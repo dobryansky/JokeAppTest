@@ -1,6 +1,7 @@
 package com.artem.jokeapptest
 
 import android.app.Application
+import com.artem.jokeapptest.resource_manager.BaseResourceManager
 
 class JokeApp : Application() {
 
@@ -8,7 +9,7 @@ class JokeApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        viewModel = ViewModel(TestModel())
+        viewModel = ViewModel(TestModel(BaseResourceManager(this)))
 
     }
 }

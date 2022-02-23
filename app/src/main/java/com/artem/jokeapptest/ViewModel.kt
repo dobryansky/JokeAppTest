@@ -1,19 +1,22 @@
 package com.artem.jokeapptest
 
-class ViewModel(private val model: Model<Any,Any>) {
+import com.artem.jokeapptest.error_clases.JokeFailure
+import com.artem.jokeapptest.input_clases.Joke
+
+class ViewModel(private val model: Model) {
 
     private var callback: TextCallback?=null
 
     fun init( callback: TextCallback){
         this.callback = callback
 
-        model.init(object :ResultCallback<Any,Any>{
-            override fun provideSuccess(data: Any) {
-                callback.provideText("SSS")
+        model.init(object :ResultCallback{
+            override fun provideSuccess(data: Joke) {
+                callback.provideText(data.getJokeUi())
             }
 
-            override fun provideError(error: Any) {
-                callback.provideText("EEE")
+            override fun provideError(error: JokeFailure) {
+                callback.provideText(error.getMessage())
             }
 
         })
