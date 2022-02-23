@@ -13,6 +13,7 @@ class ViewModel(private val model: Model) {
         model.init(object :ResultCallback{
             override fun provideSuccess(data: Joke) {
                 callback.provideText(data.getJokeUi())
+                callback.provideUrl(data.getJokeUrl())
             }
 
             override fun provideError(error: JokeFailure) {
@@ -37,4 +38,5 @@ class ViewModel(private val model: Model) {
 
 interface TextCallback{
     fun provideText(text: String)
+    fun provideUrl(url: String)
 }

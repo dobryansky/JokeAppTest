@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import com.artem.jokeapptest.extensions.loadIconFromUrl
+import com.artem.jokeapptest.extensions.loadImageFromUrl
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: ViewModel
@@ -15,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.actionBtn)
         val progressBar = findViewById<View>(R.id.progress_bar)
         val textView = findViewById<TextView>(R.id.textView)
+        val img = findViewById<ImageView>(R.id.img)
 
         viewModel = (application as JokeApp).viewModel
 
@@ -31,6 +35,10 @@ class MainActivity : AppCompatActivity() {
                 button.isEnabled = true
                 progressBar.visibility = View.INVISIBLE
                 textView.text = str
+            }
+
+            override fun provideUrl(url: String) {
+                img.loadImageFromUrl(url)
             }
 
         })
