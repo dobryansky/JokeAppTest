@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">JokeAppTest</string>
+    <string name="get_joke">Шутке</string>
+</resources>
